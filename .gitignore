@@ -1,0 +1,3 @@
+venv
+moviecollection/__pycache__
+db.sqlite3
