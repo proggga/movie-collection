@@ -3,6 +3,7 @@
 
 # Create your views here.
 from django.http import HttpResponse
+from api.models.movie import Movie
 import json
 
 def index(request):
