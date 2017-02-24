@@ -13,10 +13,5 @@ class Movie(models.Model):
 
     kinopoisk=models.FloatField()
 
-    watched=models.BooleanField(default=False)
-
-    users = models.ManyToManyField(User, related_name='movies')
-
-    def set_watched(self):
-        if not self.watched:
-            self.watched = True
+    def __str__(self):
+        return '[{}] {} {}/{}'.format(self.name, self.namerus, self.imdb_stat, self.kinopoisk)
