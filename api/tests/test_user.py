@@ -8,8 +8,12 @@ class UserTestCase(TestCase):
         super(UserTestCase, self).__init__(*args, **kwargs)
 
     def setUp(self):
-        self.John = MovieUser.objects.create_user('John Wick', 'johnwick@google.com', 'password1234')
-        self.Nick = MovieUser.objects.create_user('Nick Madson', 'nickmadson@google.com', 'password4321')
+        self.John = MovieUser.create_user(username='John Wick',
+                                          email='johnwick@google.com',
+                                          password='password1234')
+        self.Nick = MovieUser.create_user(username='Nick Madson',
+                                          email='nickmadson@google.com',
+                                          password='password4321')
         self.John.save()
         self.Nick.save()
 
@@ -34,26 +38,9 @@ class UserTestCase(TestCase):
             imdb_stat=8.9,
             kinopoisk=8.624
         )
-        self.John.movies.add(self.Iron)
-        self.John.movies.add(self.Redemption)
-        self.Nick.movies.add(self.Redemption)
-        self.Nick.movies.add(self.PulpFiction)
+        self.John.movies_want_set.add(self.Iron)
+        self.John.movies_want_set.add(self.Redemption)
+        self.Nick.movies_want_set.add(self.Redemption)
+        self.Nick.movies_want_set.add(self.PulpFiction)
         self.John.save()
         self.Nick.save()
-
-    def test_user_can_set_watched(self):
-        self.John.
-        self.assertTrue(iron.watched)
-
-    def test_movie_still_watched(self):
-        redemption = self.movie_collection['Redemption']
-        self.assertTrue(redemption.watched)
-        redemption.set_watched()
-        self.assertTrue(redemption.watched)
-
-    def test_movies_has_right_user(self):
-        for movie in self.movie_collection.values():
-            self.assertTrue(self.user in movie.users.all())
-
-    def test_user_has_right_movies(self):
-        self.assertTrue(set(self.user.movies.all()) == set(self.movie_collection.values()))

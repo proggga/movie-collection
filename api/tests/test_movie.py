@@ -1,8 +1,9 @@
 from django.test import TestCase
 from api.models.movie import Movie
-from django.contrib.auth.models import User
+
 
 class MovieTestCreationCase(TestCase):
+    """Test case of movie model"""
 
     def test_movie_can_create(self):
         """Movie can be created"""
